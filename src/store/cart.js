@@ -11,7 +11,8 @@ const INITIAL_STATE = {
       id: 2,
       quantity: 3
     }
-  ]
+  ],
+  mobileCartOpen: false
 }
 
 function addToCart(id, cartItems) {
@@ -73,7 +74,8 @@ const useCartStore = create(set => ({
   removeFromCart: (id) => set(state => removeFromCart(id, state.cartItems)),
   incrementItem: (id) => set(state => incrementItem(id, state.cartItems)),
   decrementItem: (id) => set(state => decrementItem(id, state.cartItems)),
-  setQty: (newQty, id) => set(state => setQty(newQty,id,state.cartItems))
+  setQty: (newQty, id) => set(state => setQty(newQty,id,state.cartItems)),
+  toggleMobileCart: () => set(state => ({mobileCartOpen: !state.mobileCartOpen}))
 }))
 
 export default useCartStore;

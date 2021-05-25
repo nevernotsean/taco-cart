@@ -8,9 +8,10 @@ import CartTotalPrice from './CartTotalPrice';
 
 const Cart = () => {
   const cartItems = useCartStore(state => state.cartItems)
+  const mobileCartOpen = useCartStore(state => state.mobileCartOpen)
 
   return (
-    <Container>
+    <Container isOpen={mobileCartOpen}>
       <h2 className="header">CART</h2>
       <div className={"items"}>
       {
@@ -50,9 +51,29 @@ const CartItem = ({ id, quantity }) => {
 }
 
 const Container = styled.div`
-  display: flex;
+  ${({isOpen}) => isOpen ? `transform: translateX(0)` : `transform: translateX(100%)`};
+  transition: transform 500ms ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+
+  @media screen and (min-width: 768px) {
+    transform: none;
+    position: relative;
+    width: 520px;
+    display: flex;
+    top: unset;
+    left: unset;
+    right: unset;
+    bottom: unset;
+    background: ${({theme}) => theme.colors.background};
+  }
+
   flex-direction: column;
-  width: 400px;
+  
   padding: 10px;
 
   .header {
@@ -66,7 +87,7 @@ const Container = styled.div`
       content: "";
       width: 110px;
       height: 10px;
-      background: teal;
+      background: ${({theme}) => theme.colors.teal};
       border-radius: 10px;
       display: inline-block;
       position: absolute;
@@ -119,7 +140,7 @@ const Container = styled.div`
     }
     .body {
       margin-right: 16px;
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       text-align: left;
 
       p { margin: 0; }
@@ -141,6 +162,7 @@ const Container = styled.div`
       height: 20px;
       width: 20px;
       font-size: 8px;
+      line-height: 0;
 
       cursor: pointer;
     }
