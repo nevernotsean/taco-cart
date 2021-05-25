@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import useCartStore from './../../store/cart';
 import veganIcon from '../../assets/vegan.png'
 import cartIcon from '../../assets/cart_icon.png'
+import ProductFavorite from './ProductFavorite';
 
 const Product = ({ id, title, price, image, vegan, calories }) => {
   const addToCart = useCartStore(state => state.addToCart);
@@ -13,6 +14,7 @@ const Product = ({ id, title, price, image, vegan, calories }) => {
     <Container>
       <div className="header">
         <img className="thumbnail" src={image.src} alt={image.alt} />
+        <ProductFavorite/>
       </div>
       <div className="body">
         <h2 className="title">{title}</h2>
@@ -38,6 +40,10 @@ const Container = styled.div`
   padding: 16px;
   background: white;
   margin: 4px;
+
+  .header {
+    position: relative;
+  }
 
   .thumbnail {
     width: 100%;

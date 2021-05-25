@@ -19,7 +19,7 @@ const CartItem = ({ id, quantity }) => {
     
     <div className="body">
       <p>{product[0].title}</p>
-      <a href=""><small>Customize</small></a>
+      <small>Customize</small>
     </div>
     
     <div className="end">
@@ -47,6 +47,11 @@ const Container = styled.div`
       text-align: left;
 
       p { margin: 0; }
+
+      small {
+         color: ${({theme}) => theme.colors.teal};
+         cursor: pointer;
+      }
     }
 
     .end {display: flex;}
