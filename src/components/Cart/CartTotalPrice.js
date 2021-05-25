@@ -1,15 +1,14 @@
 import React from 'react';
 import { products } from '../../data/products.json'
-import {parsePrice, parseTotalPrice} from './../../utils/parsePrice';
+import { parsePrice, parseTotalPrice } from './../../utils/parsePrice';
 import useCartStore from './../../store/cart';
 import styled from 'styled-components'
 
 const CartTotalPrice = () => {
   const cartItems = useCartStore(state => state.cartItems);
 
-  const totalPrice = parseTotalPrice(
-    cartItems.map(({id, quantity}) =>  parsePrice(products[id].price) * quantity)
-  );
+  const prices = cartItems.map(({ id, quantity }) => parsePrice(products[id].price) * quantity)
+  const totalPrice = cartItems.length ? parseTotalPrice(prices) : "0.00"
 
   return (
     <Container>
