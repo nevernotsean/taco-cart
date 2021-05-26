@@ -18,9 +18,9 @@ const Container = styled.div`
   right: 7px;
   span {
     color: #333;
-    opacity: 0.2;
+    opacity: 0.1;
     line-height: 0;
-    font-size: 31px;
+    font-size: 32px;
 
     user-select: none;
     cursor: pointer;
